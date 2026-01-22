@@ -77,7 +77,7 @@ jobs:
           data="$(curl \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{ secrets.AWS_GITHUBRUNNER_PAT }}" \
-            https://api.github.com/orgs/i-dot-ai/actions/runners)"
+            https://api.github.com/orgs/adrianBRepos/actions/runners)"
           label_name="i-dot-ai-${{ inputs.ENVIRONMENT }}-persistent-${{inputs.RUNNER_SIZE}}"
           available_runners=$(jq -r '.runners[] | select(.labels[].name=='\"$label_name\"' and .busy==false and .status=="online" )' <<< "${data}")
           if [[ $available_runners && "${{ inputs.USE_CUSTOM_RUNNER }}" == "0" ]]; then
